@@ -1,52 +1,70 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Hello World!</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-		<script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.js"></script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
-		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js'></script>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Hello World!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+	<link rel="stylesheet" href="	styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js'>
+	</script>
 	<script src='chat/app.js'></script>
 	<script src='chat/main.ctrl.js'></script>
 </head>
+
 <body>
-	<h1>Hello World!</h1>
-	We are using node <script>document.write(process.versions.node)</script>,
-	Chrome <script>document.write(process.versions.chrome)</script>,
-	and Electron <script>document.write(process.versions.electron)</script>.
-	<br>
 	<div ng-app='main'>
-		{{2+2+3}}
+		<div class="jumbotron banner col-xs-8">
+			<h1>Welcome to Glack</h1>
+		</div>
 		<div ng-controller='MainCtrl' id='holder'>
 			<!-- doing a split column view, left: repos, right: chat -->
-			<div class='col-xs-4'>
+			<!-- sidebar -->
+			<div class="col-xs-4 repos">
 				<ul id='repos'>
 					<li ng-repeat='repo in repoArr' ng-click='setActive(repo.full_name)'>{{repo.full_name}}</li>
 				</ul>
-				</div><div class='col-xs-8' ng-show='currentRepo'>
-				<span ng-click='test()'>Welcome {{user.name}}</span><span ng-show='currentRepo'>, you are chatting with other collaborators on {{currentRepo}}.</span><span ng-show='!currentRepo'>.</span>
+			</div>
+			<!-- main chat  -->
+			<div class="container-fluid">
+				<div class="col-xs-8" ng-show='!currentRepo'>
+					<h1>Join a channel on the left to start chatting!</h1>
+				</div>
+				<div class="col-xs-8" ng-show='currentRepo'>
+					<span ng-click='test()'>Welcome {{user.name}}</span><span ng-show='currentRepo'>, you are chatting with other collaborators on {{currentRepo}}.</span><span ng-show='!currentRepo'>.</span>
+				</div>
 				<ul id="example-messages" class="example-chat-messages">
-					<li ng-repeat="msg in messages | filter: {repo: currentRepo}">
-					<strong class="example-chat-username">{{ msg.from }}</strong>
-					{{ msg.body }}
+					<li class="repo"ng-repeat="msg in messages | filter: {repo:	 currentRepo}">
+						<strong class="example-chat-username">{{ msg.from }}</strong> {{ msg.body }}
 					</li>
 				</ul>
-				<form ng-submit='addMessage(message)'>
-					<input type='text' id='messageInput' ng-model='message' placeholder='Type a message...'>
-					<button class='btn' type='submit'>Send</button>
-				</form>
-				<form ng-show="uploadFilePath" ng-submit='commitChange(commit)'>
-					<input type='text' id='commitBranch' ng-model='commit.branch' ng-init="master" placeholder='Commit Branch Name'>
-					<input type='text' id='commitMessage' ng-model='commit.message' placeholder='Commit message'>
-					<button class='btn' type='submit'>Commit</button>
-				</form>
-				</div><div class='col-xs-8' ng-show='!currentRepo'>
-				<h1>Join a channel on the left to start chatting!</h1>
+				<div class="messages container-fluid col-md-8">
+					<form ng-submit='addMessage(message)'>
+						<div class="form-group">
+							<input type="text" class="form-control" id="messageInput" ng-model='message' placeholder="Type a message...">
+						</div>
+						<button class='btn' type='submit'>Send</button>
+					</form>
+					<form ng-show="uploadFilePath" ng-submit="uploadFilePath">
+						<div class="form-group form-inline">
+							<input type='text' class="form-control" id='commitBranch' ng-model='commit.branch' ng-init="master" placeholder='Commit Branch Name'>
+							<input type='text' class="form-control" id='commitMessage' ng-model='commit.message' placeholder='Commit message'>
+						</div>
+						<button class='btn' type='submit'>Commit</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
 </body>
+
 </html>

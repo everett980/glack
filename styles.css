@@ -1,0 +1,47 @@
+.banner{
+  text-align: center;
+  margin: 0px;
+  padding:10px;
+  float: right;
+}
+input{
+  width: 60%;
+}
+.messages{
+text-align: center;
+}
+.col-md-8{
+  float: right;
+}
+.repos{
+  background-color: #4c384a;
+  color: rgb(255,255,255);
+  height: 100%;
+}
+#repos{
+  list-style-type:none;
+}
+.messages{
+  background:
+}
+#example-messages{
+  height: 90vh;
+}
+#messageInput{
+  display: inline-block;
+  width: 90%;
+  float:left;
+}
+#commitBranch{
+  display: inline-block;
+  width: 40%;
+  float:left;
+}
+#commitMessage{
+  display: inline-block;
+  width: 40%;
+  float:left;
+}
+.repo{
+  .opacity: .7;
+}
