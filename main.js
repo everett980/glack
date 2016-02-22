@@ -75,7 +75,7 @@ function handleCallback (url) {
 function requestGithubToken(options, code) {
 console.log('about to request');
 						try {
-					apiRequests	
+					apiRequests
 						.post('https://github.com/login/oauth/access_token', {
 								client_id: options.client_id,
 								client_secret: options.client_secret,
@@ -87,7 +87,7 @@ console.log('about to request');
 							// Success - Received Token.
 							// Store it in localStorage maybe?
 							console.log(response.body);
-							authObj = response.body	
+							authObj = response.body
 							createChatWindow();
 						} else {
 							// Error - Show messages.
@@ -124,8 +124,8 @@ function createChatWindow () {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', 
-		
+app.on('ready',
+
 		function() {
 	loginWindow = new BrowserWindow({
 		width: 880,
@@ -143,7 +143,7 @@ app.on('ready',
 		console.log('about to navigate');
 	});
 	loginWindow.webContents.on('did-get-redirect-request', function(event, oldUrl, newUrl) {
-		console.log('just got redirect request');
+		console.log('redirect request');
 		handleCallback(newUrl);
 	});
 });
