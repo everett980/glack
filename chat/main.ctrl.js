@@ -1,6 +1,7 @@
 const ipc = require('electron').ipcRenderer;
 const Github = require('github-api');
 const fs = require('fs')
+// need to work on committing
 app.controller("MainCtrl", ["$scope", "$firebaseArray",
   function($scope, $firebaseArray) {
     $scope.uploadFilePath = null;
